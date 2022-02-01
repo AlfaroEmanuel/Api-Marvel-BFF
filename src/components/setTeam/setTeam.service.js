@@ -3,15 +3,15 @@ const Heroe = require('../../model/Heroes');
 
 async function setTeamService(req) {
     try {
-        const HEROETEAM = new Heroe(req.body);
         const { id, team } = req.body; 
-        const HEROETEAMMONGO= await Heroe.findOne({id});
+        const HEROETEAM = new Heroe(req.body);
+        const HEROETEAMMONGO = await Heroe.findOne({id});
         let heroe;
-
+        console.log('BODY ===>', req.body);
         if (!HEROETEAMMONGO) {
             heroe = await HEROETEAM.save();
         } else {
-            heroe = await Heroe.findByIdAndUpdate(HEROETEAMDB._id, {
+            heroe = await Heroe.findByIdAndUpdate(HEROETEAMMONGO._id, {
                 team
             }, {
                 new: true
